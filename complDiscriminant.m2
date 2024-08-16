@@ -17,17 +17,15 @@ chowSmoothBinaryForms(ZZ, List, List, PolynomialRing) := (N, L, W, R) -> (
     t := symbol t;
     R1 := R[t];
     V := first entries vars R;
-    gRelation := L#0 * V#0 + L#1 * V#1 - t;
+    gRelation := L#0 * V#0 + L#1 * V#1 - t; -- global scaling passing to proj
     T1 := equivChernRoot(2, W#0, R);
     T2 := equivChernRoot(2, W#1, R);
     push10 := 2*(N - 1)*t - N*(N - 1)*(T1 + T2);
     push11 := t^2 - (T1 + T2)*t - N*(N - 2)*T1*T2;
-    polyRelation := product(apply(W, i -> t + equivChernRoot(2, i, R)));
+    polyRelation := product(for i from 0 to N list (t - (N - i)*T1 - i*T2)); -- if do for-loop then N must be an integer
     return R1/ideal(gRelation, push10, push11, polyRelation);
 )
 
 -- test for exact numbers
-chowSmoothBinaryForms(6, {1,2}, {{2,3},{4,5}}, ZZ[l_1..l_2])
-
--- test for symbolic computation
+chowSmoothBinaryForms(5, {1,2}, {{1,0},{0,1}}, ZZ[l_1..l_2])
 

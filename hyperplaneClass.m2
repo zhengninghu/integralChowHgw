@@ -27,7 +27,7 @@ projHyperplaneClass(ZZ, List, PolynomialRing) := (n, W, R) -> (
 -- This is based on the result from Lemma 2.4 of Edidin-Fulghesu
 
 projHypersurfaceClass = method();
-projHypersurfaceClass(ZZ, ZZ, ZZ, List, PolynomialRing) := (n, d, W, R) -> (
+projHypersurfaceClass(ZZ, ZZ, List, PolynomialRing) := (n, d, W, R) -> (
     -- we denote by d the degree of hypersurface
     -- n is the dim of torus = number of vars of R
     -- W is the weights given by the action of Tn on the polynomial
